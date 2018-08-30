@@ -2,10 +2,13 @@ from __future__ import print_function
 import yaml
 import json
 import sys
+import logging
 
 import gi
 gi.require_version('Modulemd', '1.0')  # noqa
 from gi.repository import Modulemd  # noqa
+
+log = logging.getLogger('validate_modulemd')
 
 
 def validate_modulemd(modulemd_file, module_name):
@@ -40,5 +43,6 @@ def validate_modulemd(modulemd_file, module_name):
     if overlap_req:
         print('\nThe module {0} has a requires dependency on {1}\n'.format(
             module_name, ', '.join(str(x) for x in overlap_req)), file=sys.stderr)
-    if not overlap_br or not overlap_req:
-        raise ValueError('No Overlap Found')
+    if not overlap_br and not overlap_req:
+        log.info('No Overlap Found')
+        exit(1)
