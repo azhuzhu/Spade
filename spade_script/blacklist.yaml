@@ -6,6 +6,7 @@ requires:
 - llvm
 - rust-toolset-1.26
 - rust
+- python27
 buildrequires:
 - go-toolset-1.10
 - go
@@ -13,3 +14,4 @@ buildrequires:
 - llvm
 - rust-toolset-1.26
 - rust
+- python27
