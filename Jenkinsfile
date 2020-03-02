@@ -43,7 +43,7 @@ try { // massive try{} catch{} around the entire build for failure notifications
     def currentResult = currentBuild.result ?: 'SUCCESS'
     def script_regex = '${BUILD_LOG_REGEX, regex="^The module", maxMatches=5, showTruncatedLines=false, escapeHtml=true}'
     if (currentResult == 'SUCCESS' && manager.logContains('.* module .*')){
-        emailext to: "jwboyer@redhat.com, mnewsome@redhat.com, tstellar@redhat.com, acorvin@redhat.com, rbean@redhat.com, yashn@redhat.com",
+        emailext to: "jwboyer@redhat.com, mnewsome@redhat.com, tstellar@redhat.com, lui@redhat.com, yashn@redhat.com",
                  subject: "[factory2-spade] Module dependency overlap",
                  body: script_regex
     }
