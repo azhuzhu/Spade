@@ -1,7 +1,7 @@
 try { // massive try{} catch{} around the entire build for failure notifications
     timestamps {
         timeout(time: 60, unit: 'MINUTES') {
-            node('fedora-28') {
+            node('fedora-29') {
                 cleanWs()
 
                 stage('Prepare ENV') {
@@ -13,7 +13,7 @@ try { // massive try{} catch{} around the entire build for failure notifications
                              http://download.devel.redhat.com/rel-eng/RCMTOOLS/rcm-tools-fedora.repo
 
                         sudo dnf -y install git krb5-workstation python3 python3-pip \
-                             python3-gobject libmodulemd python3-pygit2 python3-yamlordereddictloader
+                             python3-gobject libmodulemd-2.8.2-1.fc29 python3-pygit2 python3-yamlordereddictloader
 
                         git clone https://github.com/release-engineering/Spade.git
                     """
