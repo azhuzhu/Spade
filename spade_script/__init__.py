@@ -22,7 +22,7 @@ def validate_modulemd(modulemd_file, module_name):
     modulemd = json.dumps(modulemd)
     try:
         mmd = Modulemd.ModuleStream.read_string(modulemd, True)
-        mmd.upgrade(Modulemd.ModuleStreamVersionEnum.TWO)
+        mmd = mmd.upgrade(Modulemd.ModuleStreamVersionEnum.TWO)
     except Exception:
         raise ValueError('Invalid modulemd')
     dependencies = mmd.get_dependencies()
