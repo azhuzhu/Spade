@@ -5,18 +5,9 @@ try { // massive try{} catch{} around the entire build for failure notifications
                 cleanWs()
 
                 stage('Prepare ENV') {
-                    sh """
-                        sudo curl --insecure -o /etc/pki/ca-trust/source/anchors/RH-IT-Root-CA.pem \
-                             https://password.corp.redhat.com/RH-IT-Root-CA.crt && sudo update-ca-trust extract
-
-                        sudo curl -o /etc/yum.repos.d/rcm-tools-fedora.repo \
-                             http://download.devel.redhat.com/rel-eng/RCMTOOLS/rcm-tools-fedora.repo
-
-                        sudo dnf -y install git krb5-workstation python3 python3-pip \
-                             python3-gobject libmodulemd-2.8.2-1.fc29 python3-pygit2 python3-yamlordereddictloader
-
+                    sh '''#!/bin/bash
                         git clone https://github.com/release-engineering/Spade.git
-                    """
+                    '''
                 } // prepare env stage
 
                 stage('Run Spade'){
